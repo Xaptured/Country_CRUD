@@ -22,11 +22,14 @@ public class OrmLearnApplication {
 		ApplicationContext context = SpringApplication.run(OrmLearnApplication.class, args);
 		countryService = context.getBean(CountryService.class);
 		Country country = context.getBean(Country.class);
-		testGetAllCountries();
-		getAllCountriesTest();
-		testAddCountry(country);
-		testUpdateCountry();
-		testDeleteCountry();
+//		testGetAllCountries();
+//		getAllCountriesTest();
+//		testAddCountry(country);
+//		testUpdateCountry();
+//		testDeleteCountry();
+//		testSearchByPlaceHolder();
+//		testNameStartWith();
+		testSortCountry();
 	}
 
 	private static void testGetAllCountries() {
@@ -60,6 +63,28 @@ public class OrmLearnApplication {
 	private static void testDeleteCountry() {
 		LOGGER.info("start");
 		countryService.deleteCountry("LK");
+		LOGGER.info("end");
+	}
+	
+	private static void testSearchByPlaceHolder() {
+		
+		LOGGER.info("start");
+		List<Country> countries = countryService.searchByPlaceHolder("di");
+		LOGGER.debug("countries={}", countries);
+		LOGGER.info("end");
+	}
+	
+	private static void testNameStartWith() {
+		LOGGER.info("start");
+		List<Country> countries = countryService.searchByStartingLetter("I");
+		LOGGER.debug("countries={}", countries);
+		LOGGER.info("end");
+	}
+	
+	private static void testSortCountry() {
+		LOGGER.info("start");
+		List<Country> countries = countryService.searchByStartingLetter("Ind");
+		LOGGER.debug("countries={}", countries);
 		LOGGER.info("end");
 	}
 }
